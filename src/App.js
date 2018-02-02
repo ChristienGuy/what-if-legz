@@ -55,6 +55,9 @@ class App extends Component {
   _updateEquivalentStrides() {
     const stride = this._strideLength(this.state.desiredHeight);
     const equivalentStrides = this.state.distanceTraveled / stride;
+    console.log("====================================");
+    console.log("UPDATE STRIDES");
+    console.log("====================================");
     this.setState({ equivalentStrides });
   }
 
@@ -91,16 +94,18 @@ class App extends Component {
           <h2>First some info about yourself</h2>
           <p>Everything is in meters (m)</p>
           <Form>
-            <Select
-              value={this.state.gender}
-              onChange={this._updateGender.bind(this)}
-              name="gender"
-              id=""
-            >
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-            </Select>
-
+            <InputLabel>
+              Gender:
+              <Select
+                value={this.state.gender}
+                onChange={this._updateGender.bind(this)}
+                name="gender"
+                id=""
+              >
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+              </Select>
+            </InputLabel>
             <UserInfo
               stepCount={this.state.stepCount}
               height={this.state.height}
@@ -112,12 +117,15 @@ class App extends Component {
             <p>Distance traveled: {this.state.distanceTraveled}m</p>
 
             <h2>Next, pick a new height</h2>
-            <Input
-              type="number"
-              value={this.state.desiredHeight}
-              placeholder="Desired height"
-              onChange={this._updateDesiredHeight.bind(this)}
-            />
+            <InputLabel>
+              Desired height
+              <Input
+                type="number"
+                value={this.state.desiredHeight}
+                placeholder="Desired height"
+                onChange={this._updateDesiredHeight.bind(this)}
+              />
+            </InputLabel>
             <p>Equivalent strides: {this.state.equivalentStrides}</p>
           </Form>
         </Container>
@@ -126,19 +134,32 @@ class App extends Component {
   }
 }
 
+const InputLabel = styled.label`
+  display: flex;
+  flex-direction: column;
+  color: rgba(0, 0, 0, 0.6);
+  text-transform: uppercase;
+  font-size: 0.9rem;
+`;
 const UserInfo = ({ stepCount, height, _updateSteps, _updateHeight }) => [
-  <Input
-    onChange={_updateSteps}
-    value={stepCount}
-    type="number"
-    placeholder="Step count"
-  />,
-  <Input
-    onChange={_updateHeight}
-    value={height}
-    type="number"
-    placeholder="Height (meters)"
-  />
+  <InputLabel key="stepCount">
+    Step count
+    <Input
+      onChange={_updateSteps}
+      value={stepCount}
+      type="number"
+      placeholder="Step count"
+    />
+  </InputLabel>,
+  <InputLabel key="height">
+    Height
+    <Input
+      onChange={_updateHeight}
+      value={height}
+      type="number"
+      placeholder="Height (meters)"
+    />
+  </InputLabel>
 ];
 
 export default App;
