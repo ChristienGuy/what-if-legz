@@ -12,6 +12,7 @@ injectGlobal`
     margin: 0;
     background-color: #ff9800;
     font-size: 18px;
+    font-family: "Poppins", sans-serif;
   }
   html {
     padding: 0;

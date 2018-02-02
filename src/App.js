@@ -88,6 +88,7 @@ class App extends Component {
       <div>
         <Header />
         <Container>
+          <h2>First some info about yourself</h2>
           <p>Everything is in meters (m)</p>
           <Form>
             <Select
@@ -106,9 +107,11 @@ class App extends Component {
               _updateSteps={this._updateSteps.bind(this)}
               _updateHeight={this._updateHeight.bind(this)}
             />
+
             <p>Stride: {stride}m</p>
             <p>Distance traveled: {this.state.distanceTraveled}m</p>
 
+            <h2>Next, pick a new height</h2>
             <Input
               type="number"
               value={this.state.desiredHeight}
