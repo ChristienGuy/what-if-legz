@@ -70,7 +70,7 @@ class App extends Component {
   _updateDistanceTraveled() {
     const stride = this._strideLength(this.state.height);
     const distanceTraveled = this.state.stepCount * stride;
-    this.setState({ distanceTraveled });
+    this.setState({ distanceTraveled }, this._updateEquivalentStrides);
   }
 
   _strideLength(height) {
